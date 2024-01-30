@@ -152,18 +152,6 @@ require('lazy').setup({
 
   
   {
-<<<<<<< HEAD
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-=======
     'stevearc/conform.nvim',
     opts = {},
   },
@@ -177,7 +165,6 @@ require('lazy').setup({
     },
     config = function()
       require("nvim-tree").setup {}
->>>>>>> cfde93d (first customizations)
     end,
   },
 
@@ -188,15 +175,9 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-<<<<<<< HEAD
-        theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
-=======
-        theme = 'onedark',
+        theme = 'dracula',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
->>>>>>> cfde93d (first customizations)
       },
     },
   },
@@ -307,32 +288,6 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -652,6 +607,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    -- TODO: remove this, this is the Tab-button handling to confirm autocomplete
     --['<Tab>'] = cmp.mapping(function(fallback)
     --  if cmp.visible() then
     --    cmp.select_next_item()
@@ -680,3 +636,7 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- [[ Keybinding config ]]
+require 'custom.configs.keybindings'
+
