@@ -14,6 +14,10 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Terminal manager
+vim.keymap.set('n', '<leader>m', ':Telescope toggleterm_manager<cr>', { desc = 'Terminal [M]anager' })
+
+
 
 --TODO: Move to another file (?)
 
