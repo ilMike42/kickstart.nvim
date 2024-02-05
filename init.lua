@@ -241,6 +241,13 @@ require('lazy').setup({
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    theme = "center",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.3,
+      }
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
