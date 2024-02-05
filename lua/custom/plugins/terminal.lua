@@ -6,5 +6,3 @@ return {
     open_mapping = [[<c-/>]],
   }
 }
-
-
