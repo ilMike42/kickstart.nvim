@@ -1,4 +1,8 @@
-local function change_nvim_tree_dir()
+return {
+
+}
+
+--[[ local function change_nvim_tree_dir()
 	local nvim_tree = require("nvim-tree")
 	nvim_tree.change_dir(vim.fn.getcwd())
 end
@@ -20,7 +24,7 @@ return {
             pre_save_cmds = { "NvimTreeClose" },
         }
     end
-}
+} ]]
 
 -- TODO: To remove - other session managers
 

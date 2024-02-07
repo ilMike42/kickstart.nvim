@@ -1,10 +1,28 @@
-return { 
-  'rebelot/kanagawa.nvim',
-  config = function ()
-    vim.cmd.colorscheme 'kanagawa'
-    require('kanagawa').setup()
+return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
+  config = function()
+    require("catppuccin").setup({
+      flavour = "mocha",
+      integrations = {
+        telescope = {
+          enabled = true,
+        }
+      }
+    })
+
+    vim.cmd.colorscheme 'catppuccin'
   end
 }
+
+-- return {
+--   'rebelot/kanagawa.nvim',
+--   config = function ()
+--     vim.cmd.colorscheme 'kanagawa'
+--     require('kanagawa').setup()
+--   end
+-- }
 
 -- return {
 --   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
@@ -28,4 +46,3 @@ return {
       vim.cmd.colorscheme 'tokyonight-night'
     end
 } ]]
-

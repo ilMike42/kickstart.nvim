@@ -174,9 +174,17 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'dracula',
+        theme = 'auto',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
+        -- sections = {
+        --   lualine_a = {'mode'},
+        --   lualine_a = {'mode'},
+        -- },
+        -- winbar = { 
+        --   lualine_a =  {'filename'},
+        --   lualine_b = {'filename'}
+        -- }
       },
 --      sections = {lualine_c = {require('auto-session.lib').current_session_name}},
       extensions = {'nvim-tree'}
@@ -248,6 +256,7 @@ require('telescope').setup {
         preview_width = 0.3,
       }
     },
+    sorting_strategy = 'ascending',
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -256,6 +265,7 @@ require('telescope').setup {
     },
   },
 }
+
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
