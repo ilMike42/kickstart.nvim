@@ -495,7 +495,7 @@ root_dir = util.root_pattern("angular.json", "project.json")
 
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
