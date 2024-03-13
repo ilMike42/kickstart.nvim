@@ -48,7 +48,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -163,7 +163,16 @@ require('lazy').setup({
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require("nvim-tree").setup {}
+      require("nvim-tree").setup {
+        update_focused_file = {
+          enable = true
+        },
+        view = {
+          side = "right"
+          
+        }
+
+      }
     end,
   },
 
@@ -181,13 +190,13 @@ require('lazy').setup({
         --   lualine_a = {'mode'},
         --   lualine_a = {'mode'},
         -- },
-        -- winbar = { 
+        -- winbar = {
         --   lualine_a =  {'filename'},
         --   lualine_b = {'filename'}
         -- }
       },
---      sections = {lualine_c = {require('auto-session.lib').current_session_name}},
-      extensions = {'nvim-tree'}
+      --      sections = {lualine_c = {require('auto-session.lib').current_session_name}},
+      extensions = { 'nvim-tree' }
     },
   },
 
@@ -200,12 +209,6 @@ require('lazy').setup({
     opts = {},
   },
 
-  {
-    'm4xshen/autoclose.nvim',
-    config = function()
-      require ("autoclose").setup {}
-    end
-  },
 
 
   -- "gc" to comment visual regions/lines
@@ -241,7 +244,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 
@@ -264,6 +267,11 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    oldfiles = {
+      cwd_only = true
+    }
+  }
 }
 
 
@@ -495,11 +503,11 @@ root_dir = util.root_pattern("angular.json", "project.json")
 
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   tsserver = {},
 
@@ -609,4 +617,3 @@ cmp.setup {
 -- [[ Configs loading ]]
 require 'custom.configs'
 -- require 'custom.configs.settings'
-

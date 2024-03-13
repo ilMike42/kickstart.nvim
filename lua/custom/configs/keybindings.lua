@@ -12,11 +12,12 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- Terminal manager
-vim.keymap.set('n', '<leader>m', ':Telescope toggleterm_manager<cr>', { desc = 'Terminal [M]anager' })
-
+-- Closing shortcuts
+vim.keymap.set('n', '<leader>x', ':w<cr>', { desc = 'Save file' })
+vim.keymap.set('n', '<leader>q', ':qa<cr>', { desc = '[Q]uit all' })
+-- vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIX<cr>', { desc = '[S]earch [T]odos' })
 
 
 --TODO: Move to another file (?)
