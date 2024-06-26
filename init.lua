@@ -45,6 +45,7 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -498,11 +499,13 @@ root_dir = util.root_pattern("angular.json", "project.json")
 
 local servers = {
   -- clangd = {},
-  gopls = {},
+  -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+
+  volar = {},
 
   tsserver = {},
 
@@ -520,6 +523,8 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+
+  bashls = {}
 }
 
 
@@ -531,24 +536,45 @@ require('neodev').setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+-- You can add other tools here that you want Mason to install
+-- for you, so that they are available from within Neovim.
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+  'stylua',       -- Used to format Lua code
+})
+require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+require('mason-lspconfig').setup {
+  handlers = {
+    function(server_name)
+      local server = servers[server_name] or {}
+      -- This handles overriding only values explicitly passed
+      -- by the server configuration above. Useful when disabling
+      -- certain features of an LSP (for example, turning off formatting for tsserver)
+      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      require('lspconfig')[server_name].setup(server)
+    end,
+  },
+}
+
 -- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+-- local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name].settings,
-      filetypes = (servers[server_name] or {}).filetypes,
-      root_dir = (servers[server_name] or {}).root_dir
-    }
-  end,
-}
+-- mason_lspconfig.setup {
+--   ensure_installed = vim.tbl_keys(servers),
+-- }
+--
+-- mason_lspconfig.setup_handlers {
+--   function(server_name)
+--     require('lspconfig')[server_name].setup {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--       settings = servers[server_name].settings,
+--       filetypes = (servers[server_name] or {}).filetypes,
+--       root_dir = (servers[server_name] or {}).root_dir
+--     }
+--   end,
+-- }
 
 
 
