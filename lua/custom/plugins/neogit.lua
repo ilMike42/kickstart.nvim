@@ -9,7 +9,6 @@ return {
     'ibhagwan/fzf-lua', -- optional
   },
   config = function()
-    vim.keymap.set('n', '<leader>f', ':NvimTreeToggle<CR>', { silent = true, desc = 'Toggle Nvim-Tree' })
     vim.keymap.set('n', '<leader>gs', ':Neogit<cr>', { desc = 'Open Neogit' })
     require('neogit').setup {}
   end,
