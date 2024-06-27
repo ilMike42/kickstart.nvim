@@ -1,3 +1,1 @@
-require 'custom.configs.settings'
-require 'custom.configs.keybindings'
-require "custom.configs.telescope-colors"
+require 'custom.configs.theme'
