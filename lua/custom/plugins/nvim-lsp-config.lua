@@ -167,7 +167,13 @@ return {
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
       -- tsserver = {},
-      --
+      tsserver = {
+        init_options = {
+          preferences = {
+            importModuleSpecifierPreference = 'relative',
+          },
+        },
+      },
 
       lua_ls = {
         -- cmd = {...},
