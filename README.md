@@ -6,6 +6,11 @@ Just a [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) setup, but m
 
 kickstart.nvim is a starter configuration for Neovim, providing a basic setup to get you up and running quickly. This fork includes my customizations and tweaks for an optimized development environment.
 
+## Installation
+```sh
+git clone https://github.com/ilMike42/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+```
+
 ## License
 
 This project follows the same license as the original kickstart.nvim. Feel free to use and modify the configurations.
